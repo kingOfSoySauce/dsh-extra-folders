@@ -1,8 +1,28 @@
 {
   "name": "dsh-extra-folders",
   "version": "0.1.0",
-  "private": true,
   "description": "Attach extra writable folders to one workspace, granted per session, not profile-wide.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "workspace",
+    "multi-root",
+    "folders",
+    "writable",
+    "sandbox",
+    "permissions"
+  ],
+  "author": "kingOfSoySauce",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingOfSoySauce/dsh-extra-folders.git"
+  },
+  "homepage": "https://github.com/kingOfSoySauce/dsh-extra-folders#readme",
+  "bugs": {
+    "url": "https://github.com/kingOfSoySauce/dsh-extra-folders/issues"
+  },
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -17,9 +37,11 @@
     "cordis.patch.yml",
     "locale/*.json",
     "icon.svg",
-    "README.md"
+    "assets/menu.png",
+    "assets/dialog.png",
+    "README.md",
+    "LICENSE"
   ],
-  "license": "MIT",
   "engines": {
     "dsh": ">=0.2.2-alpha.3 <0.3"
   },
