@@ -18,7 +18,15 @@
  * half owns every user-visible sentence, so one workspace's error text cannot
  * arrive in the wrong language.
  *
- * @module dsh-workspace-extra-folders
+ * The plugin contributes NO prompt text of its own. DSH's sandbox-policy note
+ * already renders `Additional writable directories: [...]` from the resolved
+ * policy, so a second note would only duplicate tokens. The policy note is
+ * projected as a tail entry of the session history and de-duplicated while the
+ * list holds, so adding or removing a folder changes the tail only. It never
+ * rewrites the system prompt or an earlier prefix, which keeps the provider's
+ * prefix cache intact.
+ *
+ * @module dsh-extra-folders
  */
 
 import { readFileSync, realpathSync, statSync } from 'node:fs'
