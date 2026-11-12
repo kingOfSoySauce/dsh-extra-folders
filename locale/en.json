@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Workspace folders",
+    "description": "A workspace has one writable directory by default, so writing anywhere else asks for approval again and again. This plugin adds more directories from the workspace row's menu. Attached directories are writable for that workspace's sessions by both the file tools and the shell. Sessions in other workspaces don't get that grant."
+  }
+}

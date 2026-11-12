@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Workspace extra folders">
+  <rect width="64" height="64" rx="14" fill="#1f6feb"/>
+  <path d="M14 22.5c0-1.38 1.12-2.5 2.5-2.5h10l4 4h17c1.38 0 2.5 1.12 2.5 2.5v18c0 1.38-1.12 2.5-2.5 2.5h-31A2.5 2.5 0 0 1 14 44.5v-22Z" fill="#ffffff" fill-opacity="0.92"/>
+  <path d="M32 31v10M27 36h10" stroke="#1f6feb" stroke-width="3.2" stroke-linecap="round"/>
+</svg>
