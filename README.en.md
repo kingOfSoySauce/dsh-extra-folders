@@ -23,8 +23,10 @@ After it installs, make sure the plugin row is on.
 ### Option 2: Command line
 
 ```sh
-dsh plugin --profile desktop add github:kingOfSoySauce/dsh-extra-folders
+dsh plugin --profile desktop add dsh-extra-folders@latest
 ```
+
+To follow unreleased changes, install from source instead: `github:kingOfSoySauce/dsh-extra-folders`.
 
 ### Option 3: Ask an agent to install it
 

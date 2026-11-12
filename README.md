@@ -15,7 +15,7 @@
 **设置 → Plugins → Add plugin**，把下面这行粘进去：
 
 ```text
-github:kingOfSoySauce/dsh-extra-folders
+dsh-extra-folders@latest
 ```
 
 装完确认插件行是开着的。
@@ -23,8 +23,10 @@ github:kingOfSoySauce/dsh-extra-folders
 ### 方式二：命令行
 
 ```sh
-dsh plugin --profile desktop add github:kingOfSoySauce/dsh-extra-folders
+dsh plugin --profile desktop add dsh-extra-folders@latest
 ```
+
+想跟还没发版的改动，可以改用源码安装：`github:kingOfSoySauce/dsh-extra-folders`。
 
 ### 方式三：让 Agent 装
 
@@ -33,15 +35,15 @@ dsh plugin --profile desktop add github:kingOfSoySauce/dsh-extra-folders
 
 ```text
 请帮我把 dsh-extra-folders 装到当前 profile：
-https://github.com/kingOfSoySauce/dsh-extra-folders
+npm 包 dsh-extra-folders@latest（源码 https://github.com/kingOfSoySauce/dsh-extra-folders）
 
 先只读确认三件事：宿主是桌面端还是 Web、当前 profile 名、dsh 版本是否 >= 0.2.2-alpha.3。
 版本不够就直接告诉我，不要尝试安装。
 
 桌面端优先用 Plugins → Add plugin，粘贴
-github:kingOfSoySauce/dsh-extra-folders
+dsh-extra-folders@latest
 如果当前宿主提供了插件管理工具，也可以执行
-dsh plugin --profile <profile> add github:kingOfSoySauce/dsh-extra-folders。
+dsh plugin --profile <profile> add dsh-extra-folders@latest。
 
 装完核对插件行是启用状态。需要重启时告诉我，由我自己重启。
 不要手改 profile 的 package.json，不要动其他插件。
