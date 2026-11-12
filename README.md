@@ -18,26 +18,12 @@
 github:kingOfSoySauce/dsh-extra-folders
 ```
 
-已经克隆到本地的话，粘本地路径：
-
-```text
-/绝对路径/dsh-extra-folders
-```
-
 装完确认插件行是开着的。
 
 ### 方式二：命令行
 
-从 GitHub 安装：
-
 ```sh
 dsh plugin --profile desktop add github:kingOfSoySauce/dsh-extra-folders
-```
-
-用本地目录：
-
-```sh
-dsh plugin --profile desktop add link:/绝对路径/dsh-extra-folders
 ```
 
 ### 方式三：让 Agent 装
