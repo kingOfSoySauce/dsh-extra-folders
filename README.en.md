@@ -15,7 +15,7 @@ Requires DSH 0.2.2-alpha.3 or later.
 Open **Settings → Plugins → Add plugin** and paste this line:
 
 ```text
-github:kingOfSoySauce/dsh-extra-folders
+dsh-extra-folders@latest
 ```
 
 After it installs, make sure the plugin row is on.
@@ -35,15 +35,15 @@ To follow unreleased changes, install from source instead: `github:kingOfSoySauc
 
 ```text
 Please install dsh-extra-folders into the current profile:
-https://github.com/kingOfSoySauce/dsh-extra-folders
+npm package dsh-extra-folders@latest (source https://github.com/kingOfSoySauce/dsh-extra-folders)
 
 First, confirm three things in read-only mode: whether the host is Desktop or Web, the current profile name, and whether the dsh version is >= 0.2.2-alpha.3.
 If the version is too low, tell me and do not try to install.
 
 On Desktop, prefer Plugins → Add plugin and paste
-github:kingOfSoySauce/dsh-extra-folders
+dsh-extra-folders@latest
 If the current host provides plugin management tools, you can also run
-dsh plugin --profile <profile> add github:kingOfSoySauce/dsh-extra-folders.
+dsh plugin --profile <profile> add dsh-extra-folders@latest.
 
 After install, check that the plugin row is enabled. If a restart is needed, tell me and I will restart it myself.
 Do not edit the profile's package.json by hand, and do not touch other plugins.
