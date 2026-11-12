@@ -58,23 +58,13 @@ dsh plugin --profile <profile> add github:kingOfSoySauce/dsh-extra-folders。
 
 授权跟着工作区走。子 agent 也算在内，其他工作区的会话看不到这些文件夹。
 
-## 和同类插件比
+## 优点
 
-| | 本插件 | multi-root-workspace | union-workspace |
-| --- | --- | --- | --- |
-| 注册模型工具 | 不注册 | 不注册 | 注册 5 个 |
-| 改动上游组件 | 只包 `sandboxPolicy.resolve()` | 禁用 fs-sandbox、sandbox 两行，换掉 fs 与 sandbox 实现 | 不替换，另建工具绕开 |
-| 运行时依赖 | 无 | `koffi`、`zod` | 无 |
-| 每目录只读或读写分级 | 没有 | 有 | 没有 |
-| 侧栏管理面板 | 没有 | 有 | 有 |
-| macOS 上 bash 可写附加目录 | 是 | 是 | 否（要 danger-full-access 预设） |
-| 最低 DSH 版本 | 0.2.2-alpha.3 | 0.1.5-rc.2 | 0.1.7-rc.2（按 peer 依赖推断） |
-
-这插件只做一件事：把附加目录并进会话的可写范围。不加工具、不换实现、不加依赖，关掉就回到原生行为。
-
-另一个同类是 jkm6221/dsh-workspace-folders，机制和我们一样（包装 `resolve()`、合并 `additionalWritableRoots`），但它注册了一个 `workspace_folders` 模型工具，最低要求 0.2.1-rc.1。
-
-要每目录分级权限或侧栏面板，用 multi-root-workspace。
+- **只动一个点**：包装 `sandboxPolicy.resolve()`，不替换文件系统或沙箱实现。
+- **不新增工具**：模型侧没有新工具，只有 DSH 自己渲染的那一行会更新。
+- **没有运行时依赖**：宿主和客户端各一个文件，不需要构建。
+- **关掉就还原**：禁用插件后回到原生行为。
+- **模型不能自己加目录**：只有人手动的操作会生效。
 
 ## 兼容性
 

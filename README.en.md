@@ -58,23 +58,13 @@ The first row in the dialog is the workspace itself. It is always writable and c
 
 The grant follows the workspace. Subagents are covered too. Sessions in other workspaces do not see these folders.
 
-## How it compares to similar plugins
+## Strengths
 
-| | This plugin | multi-root-workspace | union-workspace |
-| --- | --- | --- | --- |
-| Registers model tools | No | No | Yes, 5 |
-| Changes upstream components | Only wraps `sandboxPolicy.resolve()` | Disables the `fs-sandbox` and `sandbox` rows, replaces both implementations | No replacement. Adds separate tools to bypass it |
-| Runtime dependencies | None | `koffi`, `zod` | None |
-| Per-folder read-only or read-write levels | No | Yes | No |
-| Sidebar management panel | No | Yes | Yes |
-| Minimum DSH version | 0.2.2-alpha.3 | 0.1.5-rc.2 | 0.1.7-rc.2 (from peer deps) |
-| bash can write to attached folders on macOS | Yes | Yes | No (needs the danger-full-access preset) |
-
-This plugin does one thing: it adds the attached folders to the session's writable scope. It registers no tools, replaces no implementation, and adds no dependencies. Turn it off and the host behaves like stock DSH again.
-
-The closest neighbour is jkm6221/dsh-workspace-folders. It uses the same mechanism (wraps `resolve()`, merges `additionalWritableRoots`) but registers a `workspace_folders` model tool and requires DSH 0.2.1-rc.1 or later.
-
-If you need per-folder permission levels or a sidebar panel, use multi-root-workspace.
+- **One hook only**: it wraps `sandboxPolicy.resolve()`. It does not replace the filesystem or the sandbox implementation.
+- **No new tools**: nothing is added to the model's toolset. Only the line DSH renders changes.
+- **No runtime dependencies**: one file for the host, one for the client, no build step.
+- **Off means stock**: disable the plugin and the host behaves as before.
+- **The model cannot add folders by itself**: only a person's action grants one.
 
 ## Compatibility
 
