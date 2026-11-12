@@ -10,7 +10,23 @@
 
 需要 DSH 0.2.2-alpha.3 及以上。
 
-### 方式一：命令行
+### 方式一：在插件页添加
+
+**设置 → Plugins → Add plugin**，把下面这行粘进去：
+
+```text
+github:kingOfSoySauce/dsh-extra-folders
+```
+
+已经克隆到本地的话，粘本地路径：
+
+```text
+/绝对路径/dsh-extra-folders
+```
+
+装完确认插件行是开着的。
+
+### 方式二：命令行
 
 从 GitHub 安装：
 
@@ -24,9 +40,7 @@ dsh plugin --profile desktop add github:kingOfSoySauce/dsh-extra-folders
 dsh plugin --profile desktop add link:/绝对路径/dsh-extra-folders
 ```
 
-桌面端也可以在 **设置 → Plugins → Add plugin** 里选中本仓库目录。装完确认插件行是开着的。
-
-### 方式二：让 Agent 装
+### 方式三：让 Agent 装
 
 <details>
 <summary><strong>点击展开提示词</strong></summary>
@@ -38,7 +52,9 @@ https://github.com/kingOfSoySauce/dsh-extra-folders
 先只读确认三件事：宿主是桌面端还是 Web、当前 profile 名、dsh 版本是否 >= 0.2.2-alpha.3。
 版本不够就直接告诉我，不要尝试安装。
 
-桌面端优先用 Plugins → Add plugin 选本仓库目录；如果当前宿主提供了插件管理工具，也可以执行
+桌面端优先用 Plugins → Add plugin，粘贴
+github:kingOfSoySauce/dsh-extra-folders
+如果当前宿主提供了插件管理工具，也可以执行
 dsh plugin --profile <profile> add github:kingOfSoySauce/dsh-extra-folders。
 
 装完核对插件行是启用状态。需要重启时告诉我，由我自己重启。
