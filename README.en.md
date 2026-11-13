@@ -1,6 +1,10 @@
 # dsh-extra-folders
 
-Add extra folders to a workspace. Sessions in that workspace can edit files in them without asking for approval each time.
+When a project spans several folders, or you temporarily need to write outside the workspace, add those folders to the workspace. Sessions and subagents can then write them directly, without repeated approvals and without granting full access.
+
+Before adding a folder, writing outside the workspace triggers an approval:
+
+![Writing outside the workspace triggers an approval](assets/approval.png)
 
 | Workspace menu | Dialog |
 | --- | --- |
@@ -86,6 +90,7 @@ The grant follows the workspace. Subagents are covered too. Sessions in other wo
 - **No new tools**: the model sees the same toolset as before, and prefix-cache hits are unaffected.
 - **No prompt text**: the plugin writes nothing into the context. DSH's own writable-directories note is updated at the end of the session history when folders change; earlier prefixes stay put.
 - **No kernel patch**: the filesystem and the sandbox are untouched. One resolve method is wrapped, and disabling the plugin restores stock behavior.
+- **Scoped grant**: grants are stored per workspace; other workspaces do not see these folders. Folders can only be added or removed from the UI, and the model has no way to widen its own access.
 - **Zero dependencies**: one host file, one client file, no build step, no third-party packages.
 
 How grants work, where state lives, and what does not apply: see [Design notes](https://github.com/kingOfSoySauce/dsh-extra-folders/blob/main/DESIGN.en.md).
