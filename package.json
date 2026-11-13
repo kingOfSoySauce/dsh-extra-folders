@@ -1,6 +1,6 @@
 {
   "name": "dsh-extra-folders",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Attach extra writable folders to one workspace, granted per session, not profile-wide.",
   "keywords": [
     "dsh",
@@ -37,6 +37,7 @@
     "cordis.patch.yml",
     "locale/*.json",
     "icon.svg",
+    "assets/approval.png",
     "assets/menu.png",
     "assets/dialog.png",
     "README.md",
