@@ -1,24 +1,22 @@
 # dsh-extra-folders
 
-Attach extra writable folders to one workspace. Once the plugin is installed, the sidebar workspace row gets an extra "Add folder" item in its menu. Any folder you pick there is writable for that workspace's sessions. Both the file tools and the shell honor the grant, so writing there does not need a separate approval each time.
+Add extra folders to a workspace. Sessions in that workspace can edit files in them without asking for approval each time.
 
 | Workspace menu | Dialog |
 | --- | --- |
 | ![Add folder in the workspace menu](assets/menu.png) | ![Add folder dialog](assets/dialog.png) |
 
-## Install
+## Install and update
 
-Requires DSH 0.2.2-alpha.3 or later.
+DSH 0.2.2-alpha.3 or later.
 
-### Option 1: Add from the Plugins page
+### Option 1: Add from the UI
 
-Open **Settings → Plugins → Add plugin** and paste this line:
+**Settings → Plugins → Add plugin**
 
 ```text
 dsh-extra-folders@latest
 ```
-
-After it installs, make sure the plugin row is on.
 
 ### Option 2: Command line
 
@@ -26,12 +24,10 @@ After it installs, make sure the plugin row is on.
 dsh plugin --profile desktop add dsh-extra-folders@latest
 ```
 
-To follow unreleased changes, install from source instead: `github:kingOfSoySauce/dsh-extra-folders`.
-
-### Option 3: Ask an agent to install it
+### Option 3: Ask an agent for help
 
 <details>
-<summary><strong>Click to expand the prompt</strong></summary>
+<summary><strong>Expand the install prompt</strong></summary>
 
 ```text
 Please install dsh-extra-folders into the current profile:
@@ -52,6 +48,30 @@ When it is installed, take me to the more menu of a sidebar workspace row and co
 
 </details>
 
+<details>
+<summary><strong>Expand the update prompt</strong></summary>
+
+```text
+Please update dsh-extra-folders to the latest version:
+npm package dsh-extra-folders@latest (source https://github.com/kingOfSoySauce/dsh-extra-folders)
+
+First, confirm four things in read-only mode: whether the host is Desktop or Web, the current profile name, the installed version, and the latest version on npm.
+If it is already the latest, tell me and do not reinstall.
+
+On Desktop, prefer Plugins → Add plugin and add
+dsh-extra-folders@latest
+If the current host provides plugin management tools, you can also run
+dsh plugin --profile <profile> add dsh-extra-folders@latest.
+
+After the update, check that the plugin row is enabled. If a restart is needed, tell me and I will restart it myself.
+Do not edit the profile's package.json by hand, and do not touch other plugins.
+When it is updated, take me to the more menu of a sidebar workspace row and confirm that "Add folder" is there and the folders I added before are still listed.
+```
+
+</details>
+
+Whichever option you use, if the version still looks old after updating, turn the plugin row off and on in Plugins.
+
 ## Usage
 
 Sidebar workspace row → the more button at the end of the row → **Add folder**.
@@ -62,11 +82,13 @@ The grant follows the workspace. Subagents are covered too. Sessions in other wo
 
 ## Strengths
 
-- **One hook only**: it wraps `sandboxPolicy.resolve()`. It does not replace the filesystem or the sandbox implementation.
-- **No new tools**: nothing is added to the model's toolset. Only the line DSH renders changes.
-- **No runtime dependencies**: one file for the host, one for the client, no build step.
-- **Off means stock**: disable the plugin and the host behaves as before.
-- **The model cannot add folders by itself**: only a person's action grants one.
+- **Native UI**: the dialog and buttons belong to the host, opened from the workspace row menu. Colors and fonts follow the host, so appearance plugins are naturally compatible.
+- **No new tools**: the model sees the same toolset as before, and prefix-cache hits are unaffected.
+- **No prompt text**: the plugin writes nothing into the context. DSH's own writable-directories note is updated at the end of the session history when folders change; earlier prefixes stay put.
+- **No kernel patch**: the filesystem and the sandbox are untouched. One resolve method is wrapped, and disabling the plugin restores stock behavior.
+- **Zero dependencies**: one host file, one client file, no build step, no third-party packages.
+
+How grants work, where state lives, and what does not apply: see [Design notes](https://github.com/kingOfSoySauce/dsh-extra-folders/blob/main/DESIGN.en.md).
 
 ## Compatibility
 
@@ -78,17 +100,9 @@ The grant follows the workspace. Subagents are covered too. Sessions in other wo
 | Web (`dsh web`) | Same code as desktop. The folder picker is replaced by in-app browsing. Not tested |
 | Windows | Applies to the file tools only. The sandboxed shell is not affected. This limit comes from DSH. Not tested |
 
-The kernel is checked when the host starts. If the kernel is not supported, the plugin writes one clear log line and stops. You are not left with a menu item that does nothing.
+The kernel is checked when the host starts. If the kernel is not supported, the plugin writes one clear log line and stops.
 
-## Update and uninstall
-
-To update, pull the latest code, then turn the plugin row off and on again in Plugins.
-
-```sh
-cd /absolute/path/dsh-extra-folders && git pull
-```
-
-To uninstall:
+## Uninstall
 
 ```sh
 dsh plugin --profile desktop remove dsh-extra-folders

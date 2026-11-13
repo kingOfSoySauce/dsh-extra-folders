@@ -6,7 +6,7 @@
 | --- | --- |
 | ![工作区菜单里的「添加文件夹」](assets/menu.png) | ![添加文件夹对话框](assets/dialog.png) |
 
-## 安装
+## 安装、更新
 
 DSH 0.2.2-alpha.3 及以上。
 
@@ -27,7 +27,7 @@ dsh plugin --profile desktop add dsh-extra-folders@latest
 ### 方式三：Agent 帮忙
 
 <details>
-<summary><strong>点击展开提示词</strong></summary>
+<summary><strong>展开安装提示词</strong></summary>
 
 ```text
 请帮我把 dsh-extra-folders 装到当前 profile：
@@ -48,6 +48,30 @@ dsh plugin --profile <profile> add dsh-extra-folders@latest。
 
 </details>
 
+<details>
+<summary><strong>展开更新提示词</strong></summary>
+
+```text
+请帮我把 dsh-extra-folders 更新到最新版：
+npm 包 dsh-extra-folders@latest（源码 https://github.com/kingOfSoySauce/dsh-extra-folders）
+
+先只读确认四件事：宿主是桌面端还是 Web、当前 profile 名、已装版本、npm 上的最新版本。
+已经是最新就直接告诉我，不要重装。
+
+桌面端优先用 Plugins → Add plugin 重新添加
+dsh-extra-folders@latest
+如果当前宿主提供了插件管理工具，也可以执行
+dsh plugin --profile <profile> add dsh-extra-folders@latest。
+
+更新完核对插件行是启用状态。需要重启时告诉我，由我自己重启。
+不要手改 profile 的 package.json，不要动其他插件。
+更新后带我到侧栏工作区行的更多菜单，确认「添加文件夹」还在，之前加的文件夹也还在。
+```
+
+</details>
+
+不管用哪种方式，更新后如果版本号没变，在 Plugins 里把插件行关掉再打开。
+
 ## 使用
 
 侧栏工作区行 → 行尾的更多按钮 → **添加文件夹**。
@@ -58,11 +82,13 @@ dsh plugin --profile <profile> add dsh-extra-folders@latest。
 
 ## 优点
 
-- **只动一个点**：包装 `sandboxPolicy.resolve()`，不替换文件系统或沙箱实现。
-- **不新增工具**：模型侧没有新工具，只有 DSH 自己渲染的那一行会更新。
-- **没有运行时依赖**：宿主和客户端各一个文件，不需要构建。
-- **关掉就还原**：禁用插件后回到原生行为。
-- **模型不能自己加目录**：只有人手动的操作会生效。
+- **原生界面**：弹框和按钮都是官方的，入口在工作区行的更多菜单里。颜色、字体这些全跟宿主走，天然兼容各种外观插件。
+- **不加工具**：模型看到的工具和没装时一样，不影响前缀缓存命中。
+- **零提示词**：插件不往上下文里写东西。提示词和工具说明都没有，连进度提示也不写。DSH 自己的策略说明会跟着目录更新末尾那一条，前面的前缀不动。
+- **不换内核**：没换文件系统，也没换沙箱。只包了权限解析那一个方法，插件一关就回到原生行为。
+- **零依赖**：宿主一个文件，界面一个文件，不用构建，也没有第三方包。
+
+怎么授权、状态放哪，见 [设计说明](https://github.com/kingOfSoySauce/dsh-extra-folders/blob/main/DESIGN.md)。不适用的场景也写在那里。
 
 ## 兼容性
 
@@ -74,17 +100,9 @@ dsh plugin --profile <profile> add dsh-extra-folders@latest。
 | Web（`dsh web`） | 代码与桌面端相同，文件夹选择器换成应用内浏览。未实测 |
 | Windows | 只对文件工具生效，沙箱里的 shell 不受影响。这条限制来自 DSH 本身，未实测 |
 
-宿主启动时会检查内核。不支持就写一条明确日志并退出，不会留下一个点了没反应的菜单。
+宿主启动时会检查内核。不支持就写一条明确日志并退出。
 
-## 更新与卸载
-
-更新：拉最新代码，然后在 Plugins 里把插件行关掉再打开。
-
-```sh
-cd /绝对路径/dsh-extra-folders && git pull
-```
-
-卸载：
+## 卸载
 
 ```sh
 dsh plugin --profile desktop remove dsh-extra-folders
