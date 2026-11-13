@@ -1,6 +1,6 @@
 # DSH工作区添加文件夹插件
 
-给一个工作区多挂几个可写文件夹。装好以后，侧栏工作区行的菜单里多一项「添加文件夹」，选进来的文件夹对这个工作区的会话可写，文件工具和 shell 都认，写到那里不用再逐次点授权。
+给一个工作区添加可访问文件夹，工作区内的会话都可以编辑文件夹内文件，不用再逐次点授权。
 
 | 工作区菜单 | 对话框 |
 | --- | --- |
@@ -8,17 +8,15 @@
 
 ## 安装
 
-需要 DSH 0.2.2-alpha.3 及以上。
+DSH 0.2.2-alpha.3 及以上。
 
-### 方式一：在插件页添加
+### 方式一：界面添加
 
-**设置 → Plugins → Add plugin**，把下面这行粘进去：
+**插件 → 添加插件**
 
 ```text
 dsh-extra-folders@latest
 ```
-
-装完确认插件行是开着的。
 
 ### 方式二：命令行
 
@@ -26,9 +24,7 @@ dsh-extra-folders@latest
 dsh plugin --profile desktop add dsh-extra-folders@latest
 ```
 
-想跟还没发版的改动，可以改用源码安装：`github:kingOfSoySauce/dsh-extra-folders`。
-
-### 方式三：让 Agent 装
+### 方式三：Agent 帮忙
 
 <details>
 <summary><strong>点击展开提示词</strong></summary>
